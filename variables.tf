@@ -14,6 +14,12 @@ variable "vpc_cidr" {
 
 variable "public_cidrs" {
   type        = list(string)
-  default     = ["10.123.1.0/24", "10.123.2.0/24"]
-  description = "Cidr block of the subnet"
+  default     = ["10.123.1.0/24", "10.123.3.0/24"]
+  description = "Cidr block of the public subnet"
+}
+
+variable "private_cidrs" {
+  type        = list(string)
+  default     = ["10.123.2.0/24", "10.123.4.0/24"]
+  description = "Cidr block of the private subnet"
 }
