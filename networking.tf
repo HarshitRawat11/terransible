@@ -44,8 +44,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-
-
 resource "aws_route_table" "custom_public_rt" {
   vpc_id = aws_vpc.custom_vpc.id
 
@@ -79,7 +77,7 @@ resource "aws_security_group_rule" "ingress_all" {
   from_port         = 0
   to_port           = 65535
   protocol          = "-1"
-  cidr_blocks       = var.access_ip
+  cidr_blocks       = var.ingress_ip
   security_group_id = aws_security_group.sg.id
 }
 
@@ -102,4 +100,10 @@ resource "random_id" "random" {
 
 locals {
   azs = data.aws_availability_zones.available.names
+}
+
+resource "aws_route_table_association" "public_assoc" {
+  count          = length(local.azs)
+  subnet_id      = aws_subnet.public_subnet[count.index].id
+  route_table_id = aws_route_table.custom_public_rt.id
 }

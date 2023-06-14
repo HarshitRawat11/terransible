@@ -31,3 +31,18 @@ variable "egress_ip" {
   default     = ["0.0.0.0/0"]
   description = "cidr block aloowed for egress rule"
 }
+
+variable "main_instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "main_vol_size" {
+  type    = number
+  default = 8
+}
+
+variable "main_instance_count" {
+  type    = number
+  default = 2
+}
