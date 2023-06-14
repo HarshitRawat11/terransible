@@ -10,7 +10,6 @@ variable "SECRET_KEY" {
 
 variable "vpc_cidr" {
   type        = string
-  default     = "10.123.0.0/16"
   description = "cidr block of custom vpc"
 }
 
@@ -45,4 +44,12 @@ variable "main_vol_size" {
 variable "main_instance_count" {
   type    = number
   default = 2
+}
+
+variable "key_name" {
+  type = string
+}
+
+variable "public_key_path" {
+  type = string
 }
