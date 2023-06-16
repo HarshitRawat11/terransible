@@ -1,13 +1,3 @@
-variable "ACCESS_KEY" {
-  type        = string
-  description = "Access key of the aws user"
-}
-
-variable "SECRET_KEY" {
-  type        = string
-  description = "Secret access key of the aws user"
-}
-
 variable "vpc_cidr" {
   type        = string
   description = "cidr block of custom vpc"
@@ -43,7 +33,7 @@ variable "main_vol_size" {
 
 variable "main_instance_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "key_name" {

@@ -1,18 +1,18 @@
 data "aws_ami" "server_ami" {
   most_recent = true
 
-  owners = ["308"]
+  owners = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["values"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 }
 
 resource "aws_instance" "main" {
   count                  = var.main_instance_count
   instance_type          = var.main_instance_type
-  ami                    = data.aws_ami.server_ami
+  ami                    = data.aws_ami.server_ami.id
   vpc_security_group_ids = [aws_security_group.sg.id]
   subnet_id              = aws_subnet.public_subnet[count.index].id
   user_data              = templatefile("./main-userdata.tpl", { new_hostname = "main-${random_id.random_str[count.index].dec}" })
